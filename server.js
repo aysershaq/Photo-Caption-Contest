@@ -48,7 +48,7 @@ app.use(
   })
 );
 app.use(cors({
-  origin: ["http://127.0.0.1:5500", "http://localhost:5500"], // السماح لهذا النطاق فقط
+  origin: ["https://photo-caption-contest-pbuo.onrender.com/", "http://localhost:5500"], // السماح لهذا النطاق فقط
   methods: ['GET','POST','PUT','DELETE','PATCH',"OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: false // السماح بإرسال الكوكي/التوكن عبر الطلبات (إن لزم)
