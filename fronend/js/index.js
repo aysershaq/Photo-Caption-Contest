@@ -1,7 +1,7 @@
 // js/register.js
 
 
- const API_URL = "https://photo-caption-contest-main.vercel.app/";
+ const API_URL = "https://photo-caption-contest-pbuo.onrender.com/";
 
 // الحصول على عناصر النموذج والمكونات
 const registerForm = document.getElementById('registerForm');
