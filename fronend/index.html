@@ -1,0 +1,36 @@
+<!-- register.html -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Register - Photo Caption Contest</title>
+    <!-- تضمين Tailwind CSS من خلال CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <!-- حاوية النموذج -->
+    <div class="bg-white p-6 rounded shadow-md w-full max-w-sm">
+        <h1 class="text-2xl font-bold mb-4 text-center">Create New Account</h1>
+        <!-- رسائل الخطأ أو النجاح -->
+        <div id="registerError" class="text-red-500 mb-3 text-center"></div>
+        <!-- نموذج التسجيل -->
+        <form id="registerForm" novalidate>
+            <label class="block mb-2 font-medium text-right">User Name:</label>
+            <input type="text" id="username" name="username" class="w-full mb-3 p-2 border border-gray-300 rounded text-left" placeholder="أدخل اسم المستخدم" required />
+            <label class="block mb-2 font-medium text-right"> email:</label>
+            <input type="email" id="email" name="email" class="w-full mb-3 p-2 border border-gray-300 rounded text-left" placeholder="أدخل البريد الإلكتروني" required />
+            <label class="block mb-2 font-medium text-right"> Password:</label>
+            <input type="password" id="password" name="password" class="w-full mb-3 p-2 border border-gray-300 rounded text-left" placeholder="أدخل كلمة المرور" required />
+            <label class="block mb-2 font-medium text-right">Retype Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" class="w-full mb-4 p-2 border border-gray-300 rounded text-left" placeholder="أعد إدخال كلمة المرور" required />
+            <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Register</button>
+        </form>
+        <!-- رابط للانتقال إلى صفحة تسجيل الدخول -->
+        <p class="mt-4 text-center text-sm"> Already Have Account ?<a href="login.html" class="text-blue-600 hover:underline">Login</a></p>
+    </div>
+    <!-- تضمين ملفات JavaScript -->
+    <!-- <script src="js/app.js"></script> -->
+    <script src="js/register.js"></script>
+</body>
+</html>

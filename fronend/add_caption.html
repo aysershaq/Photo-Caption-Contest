@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>إضافة تعليق</title>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- CSP يسمح بالاتصال بالباك وإظهار الصور من localhost:3000 -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+      default-src 'self';
+      img-src 'self' data: http://localhost:3000;
+      connect-src 'self' http://localhost:3000;
+      script-src 'self' https://cdn.tailwindcss.com;
+      style-src 'self' 'unsafe-inline';
+    "
+    />
+  </head>
+
+  <body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white border-b">
+      <div
+        class="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between"
+      >
+        <h1 class="text-lg sm:text-xl font-bold text-gray-900">Add Caption</h1>
+
+        <div class="flex items-center gap-2">
+          <a
+            href="./photos.html"
+            class="text-sm px-3 py-2 rounded-lg border bg-white hover:bg-gray-50 text-gray-700"
+          >
+            Back To Photos
+          </a>
+          <a
+            href="./login.html"
+            class="text-sm px-3 py-2 rounded-lg bg-gray-900 text-white hover:opacity-90"
+          >
+            Signout
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <main class="max-w-4xl mx-auto px-4 py-6">
+      <!-- Card -->
+      <section class="bg-white rounded-2xl shadow-sm border overflow-hidden">
+        <div class="p-4 sm:p-6">
+          <p class="text-sm text-gray-600">The Photo</p>
+        </div>
+
+        <!-- Photo Container -->
+        <div id="photoContainer" class="px-4 sm:px-6 pb-4 sm:pb-6">
+          <!-- سيتم حقنه من add_caption.js -->
+          <div class="animate-pulse">
+            <div class="h-64 w-full bg-gray-200 rounded-xl"></div>
+            <div class="mt-4 h-4 w-1/3 bg-gray-200 rounded"></div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="border-t px-4 sm:px-6 py-4 sm:py-6 bg-gray-50">
+          <form id="captionForm" class="space-y-3">
+            <label
+              for="captionInput"
+              class="block text-sm font-medium text-gray-800"
+            >
+              Write Your Caption
+            </label>
+
+            <input
+              id="captionInput"
+              type="text"
+              required
+              placeholder="مثال: أجمل لقطة!"
+              class="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-gray-900"
+            />
+
+            <div class="flex items-center gap-2">
+              <button
+                type="submit"
+                class="rounded-xl bg-blue-600 text-white px-4 py-3 text-sm font-semibold hover:bg-blue-700"
+              >
+                Send Caption
+              </button>
+
+              <button
+                type="button"
+                id="clearBtn"
+                class="rounded-xl border bg-white px-4 py-3 text-sm text-gray-700 hover:bg-gray-50"
+              >
+                Delete
+              </button>
+            </div>
+
+            <p id="message" class="text-sm"></p>
+          </form>
+        </div>
+      </section>
+
+      <!-- Tip -->
+      <p class="mt-4 text-xs text-gray-500">
+        ملاحظة: إذا رجعت للّوجين تلقائيًا، فهذا يعني أن التوكن غير موجود/انتهت
+        صلاحيته.
+      </p>
+    </main>
+
+    <!-- Script -->
+    <script src="./js/add-caption.js"></script>
+
+    <!-- Small UX helper -->
+    <script>
+      document.getElementById("clearBtn")?.addEventListener("click", () => {
+        const input = document.getElementById("captionInput");
+        const msg = document.getElementById("message");
+        if (input) input.value = "";
+        if (msg) msg.textContent = "";
+      });
+    </script>
+  </body>
+</html>

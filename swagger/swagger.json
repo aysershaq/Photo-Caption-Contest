@@ -1,0 +1,772 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Photo Caption Contest",
+    "version": "1.0.0.0"
+  },
+  "paths": {
+    "/api/all-images": {
+      "summary": "get and post ",
+      "description": "to get and post envelops based on operation ",
+      "get": {
+        "summary": "get all Images ",
+        "description": "to retrieve all Images from the DB",
+        "operationId": "get_images",
+        "responses": {
+          "200": {
+            "description": "to retrievr  all images from the DB",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "images": {
+                    "value": {
+                      "status": "done",
+                      "images": [
+                        {
+                          "id": 37,
+                          "caption": "Ayser Shaqruni",
+                          "imageUrl": "/uploads/images/1768493850656-912754963.jpg",
+                          "captionByUserId": 39,
+                          "createdAt": "2026-01-15T16:17:30.669Z",
+                          "updatedAt": "2026-01-15T16:19:24.125Z"
+                        },
+                        {
+                          "id": 39,
+                          "caption": null,
+                          "imageUrl": "/uploads/images/1768494535431-820230368.jpg",
+                          "captionByUserId": null,
+                          "createdAt": "2026-01-15T16:28:55.444Z",
+                          "updatedAt": "2026-01-15T16:28:55.444Z"
+                        },
+                        {
+                          "id": 40,
+                          "caption": null,
+                          "imageUrl": "/uploads/images/1768494593919-815935918.jpg",
+                          "captionByUserId": null,
+                          "createdAt": "2026-01-15T16:29:53.931Z",
+                          "updatedAt": "2026-01-15T16:29:53.931Z"
+                        },
+                        {
+                          "id": 9,
+                          "caption": "wonderful bird image",
+                          "imageUrl": "/uploads/1768396570013-747098886.jpg",
+                          "captionByUserId": null,
+                          "createdAt": "2026-01-14T13:16:10.030Z",
+                          "updatedAt": "2026-01-15T08:27:20.394Z"
+                        },
+                        {
+                          "id": 8,
+                          "caption": "fantastic  bird ",
+                          "imageUrl": "/uploads/1768396343427-507631184.jpg",
+                          "captionByUserId": null,
+                          "createdAt": "2026-01-14T13:12:23.431Z",
+                          "updatedAt": "2026-01-15T08:27:44.544Z"
+                        },
+                        {
+                          "id": 4,
+                          "caption": "buetifull",
+                          "imageUrl": "/uploads/1768396261840-948326183.jpg",
+                          "captionByUserId": null,
+                          "createdAt": "2026-01-14T13:11:01.844Z",
+                          "updatedAt": "2026-01-15T11:14:27.399Z"
+                        },
+                        {
+                          "id": 5,
+                          "caption": "buetifull",
+                          "imageUrl": "/uploads/1768396293764-442007052.jpg",
+                          "captionByUserId": null,
+                          "createdAt": "2026-01-14T13:11:33.767Z",
+                          "updatedAt": "2026-01-15T11:21:23.178Z"
+                        },
+                        {
+                          "id": 6,
+                          "caption": "test",
+                          "imageUrl": "/uploads/1768396312891-222941843.jpg",
+                          "captionByUserId": null,
+                          "createdAt": "2026-01-14T13:11:52.893Z",
+                          "updatedAt": "2026-01-15T11:44:41.985Z"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Default error sample response"
+          }
+        }
+      }
+    },
+    "/api/image/{id}": {
+      "get": {
+        "summary": "get single image",
+        "description": "to retrieve a specific image with an Id from the DB ",
+        "operationId": "get_image_id",
+        "responses": {
+          "200": {
+            "description": "to retrive single image from DB",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "single image": {
+                    "value": {
+                      "status": "image retrived successfully",
+                      "image": {
+                        "id": 37,
+                        "caption": "Ayser Shaqruni",
+                        "imageUrl": "/uploads/images/1768493850656-912754963.jpg",
+                        "captionByUserId": 39,
+                        "createdAt": "2026-01-15T16:17:30.669Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id of the image.",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ]
+      },
+      "delete": {
+        "summary": "to delete an image ",
+        "description": "to delete an image  specified by an id ",
+        "operationId": "delete_image",
+        "responses": {
+          "default": {
+            "description": "Default error sample response",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "deleting an image ": {
+                    "value": "{\n    \"status\": \"image deleted successfully\",\n    \"image\": {\n        \"id\": 9,\n        \"imageUrl\": \"/uploads/1768396570013-747098886.jpg\",\n        \"createdAt\": \"2026-01-14T13:16:10.030Z\",\n        \"updatedAt\": \"2026-01-15T08:27:20.394Z\"\n    }\n}"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id of the image.",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ]
+      }
+    },
+    "/api/add-caption/{id}": {
+      "summary": "to add a caption to specific image with an id",
+      "description": "to get and post envelops based on operation ",
+      "post": {
+        "summary": "to add caption to specific image",
+        "description": "",
+        "operationId": "post_caption",
+        "requestBody": {
+          "description": "A caption  object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Images"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "post caption to spcific id",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "image caption added": {
+                    "value": {
+                      "message": "caption added successfully",
+                      "image": {
+                        "id": 37,
+                        "caption": "Ayser Shaqruni",
+                        "imageUrl": "/uploads/images/1768493850656-912754963.jpg",
+                        "captionByUserId": 39,
+                        "createdAt": "2026-01-15T16:17:30.669Z",
+                        "updatedAt": "2026-01-15T16:19:24.125Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Default error sample response"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id of the image.",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ]
+      }
+    },
+    "/api/allUsers": {
+      "summary": "to retrieve all users from the DB ",
+      "get": {
+        "summary": "to retrive all users from the DB ",
+        "description": "",
+        "operationId": "get_users",
+        "responses": {
+          "200": {
+            "description": "get all users from the DB",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "retriving all users": {
+                    "value": {
+                      "status": "retrived successfully",
+                      "users": [
+                        {
+                          "id": 1,
+                          "username": "Ayser",
+                          "email": "ayser.shaqruni@gmail.com",
+                          "passwordHash": "123",
+                          "createdAt": "2026-01-15T08:35:03.682Z",
+                          "updatedAt": "2026-01-15T08:35:03.682Z"
+                        },
+                        {
+                          "id": 6,
+                          "username": "Ayser shaqruni",
+                          "email": "ayser.shaqruni1995@gmail.com",
+                          "passwordHash": "$2b$10$Eh6/Nc99BVXCLxeVYf8ciuQA2cs0yO22PnjABgO2DN5R2np24MUwC",
+                          "createdAt": "2026-01-15T09:06:47.941Z",
+                          "updatedAt": "2026-01-15T09:06:47.941Z"
+                        },
+                        {
+                          "id": 8,
+                          "username": "Aya shaqruni",
+                          "email": "aya.shaqruni1988@gmail.com",
+                          "passwordHash": "$2b$10$DG7teqJXH7mQ2UNQTusSL.D6ppLzTFvyxM0P9BBZaMnmrMcTPKRbG",
+                          "createdAt": "2026-01-15T09:08:54.541Z",
+                          "updatedAt": "2026-01-15T09:08:54.541Z"
+                        },
+                        {
+                          "id": 10,
+                          "username": "amin shaqruni",
+                          "email": "amin1980@gmail.com",
+                          "passwordHash": "$2b$10$quz2ZUi2jXyu63o96UUwueWxWfot4Cz.dQJ0eojYku5vdMc1Vi4XC",
+                          "createdAt": "2026-01-15T09:12:30.319Z",
+                          "updatedAt": "2026-01-15T09:12:30.319Z"
+                        },
+                        {
+                          "id": 11,
+                          "username": "ahmed shaqruni",
+                          "email": "ahmed.shaqruni1983@gmail.com",
+                          "passwordHash": "$2b$10$H0z2AH.2tFaoEJYYe2eZm.GaSbtv4OwgGCrUuLlJWe3R89gIFatQ2",
+                          "createdAt": "2026-01-15T09:13:18.869Z",
+                          "updatedAt": "2026-01-15T09:13:18.869Z"
+                        },
+                        {
+                          "id": 25,
+                          "username": "ahmed_shaqruni",
+                          "email": "ahmed.1983@gmail.com",
+                          "passwordHash": "$2b$10$QB3xcm6kGZXORwI5Odigb.srATuEnLZLJcHAopn5Lm0pDdYnFSc7K",
+                          "createdAt": "2026-01-15T09:21:39.580Z",
+                          "updatedAt": "2026-01-15T09:21:39.580Z"
+                        },
+                        {
+                          "id": 29,
+                          "username": "ahmed shaqruni1983",
+                          "email": "hmeeda@gmail.com",
+                          "passwordHash": "$2b$10$s8vJ5M1naJecxkYHGqWoo.YN4EZFI6wih6TAN9JOTos36w4SJNw8O",
+                          "createdAt": "2026-01-15T09:22:32.989Z",
+                          "updatedAt": "2026-01-15T09:22:32.989Z"
+                        },
+                        {
+                          "id": 39,
+                          "username": "Ayser",
+                          "email": "ayser.shaaqruni@yahoo.com",
+                          "passwordHash": "$2b$10$h08QEAN5tWcmk1/DKrT64uNo1w.z6HPXN0nOuxnaCBC8/AcxeZs1m",
+                          "createdAt": "2026-01-15T11:28:15.395Z",
+                          "updatedAt": "2026-01-15T11:28:15.395Z"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Default error sample response"
+          }
+        }
+      }
+    },
+    "/api/user/{id}": {
+      "summary": "to rerieve a single user",
+      "get": {
+        "summary": "to retrieve a single user from the DB specified by id",
+        "description": "to get a single user from DB",
+        "operationId": "get_user_id",
+        "responses": {
+          "200": {
+            "description": "to get a single user from DB",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "single user retrieval ": {
+                    "value": {
+                      "staus": "success,",
+                      "user": {
+                        "id": "39,",
+                        "username": "Ayser,",
+                        "email": "ayser.shaaqruni@yahoo.com"
+                      },
+                      "passwordHash": "$2b$10$h08QEAN5tWcmk1/DKrT64uNo1w.z6HPXN0nOuxnaCBC8/AcxeZs1m",
+                      "createdAt": "2026-01-15T11:28:15.395Z",
+                      "updatedAt": "2026-01-15T11:28:15.395Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Default error sample response"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id of the user.",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ]
+      },
+      "delete": {
+        "summary": "to delete a user with spicified id from the DB ",
+        "description": "",
+        "operationId": "delete_user",
+        "responses": {
+          "200": {
+            "description": "to delete a single user from DB",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "deleting user ": {
+                    "value": {
+                      "status": "deleted successfuuly",
+                      "user": {
+                        "id": 25,
+                        "username": "ahmed_shaqruni",
+                        "email": "ahmed.1983@gmail.com",
+                        "passwordHash": "$2b$10$QB3xcm6kGZXORwI5Odigb.srATuEnLZLJcHAopn5Lm0pDdYnFSc7K",
+                        "createdAt": "2026-01-15T09:21:39.580Z",
+                        "updatedAt": "2026-01-15T09:21:39.580Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Default error sample response"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id of the user to be deleted.",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ]
+      }
+    },
+    "/api/register": {
+      "summary": "to  register a  new user to the DB ",
+      "post": {
+        "summary": "to add a new user to the DB ",
+        "description": "",
+        "operationId": "register_user",
+        "requestBody": {
+          "description": "A new order object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/register"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "register a new user .",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "adding a new user": {
+                    "value": {
+                      "status": "User registered successfully",
+                      "user": {
+                        "id": 40,
+                        "username": "Ayser",
+                        "email": "ayser.shaqruni@hotmail.com",
+                        "passwordHash": "$2b$10$vqZgDDbthuo.kexQy6ZDBuCEDwV/Ai3jrY.t/4XIAQhdNNrM1ToVK",
+                        "updatedAt": "2026-01-15T18:34:41.283Z",
+                        "createdAt": "2026-01-15T18:34:41.283Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Default error sample response"
+          }
+        }
+      }
+    },
+    "/api/login": {
+      "summary": "to login an existing user ",
+      "post": {
+        "summary": "to login an existing user from the DB ",
+        "description": "",
+        "operationId": "login_user",
+        "requestBody": {
+          "description": "A new order object",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/login"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "logging in an existing user .",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "logging in an existing  user ": {
+                    "value": {
+                      "status": "login successfully",
+                      "user": {
+                        "id": 40,
+                        "username": "Ayser",
+                        "email": "ayser.shaqruni@hotmail.com",
+                        "passwordHash": "$2b$10$vqZgDDbthuo.kexQy6ZDBuCEDwV/Ai3jrY.t/4XIAQhdNNrM1ToVK",
+                        "createdAt": "2026-01-15T18:34:41.283Z",
+                        "updatedAt": "2026-01-15T18:34:41.283Z"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Default error sample response"
+          }
+        }
+      }
+    },
+    "/api/logout": {
+      "summary": "to logout a sigine in user ",
+      "post": {
+        "summary": "to logout a user ",
+        "description": "to logout a user ",
+        "operationId": "logout_user",
+        "responses": {
+          "200": {
+            "description": "logging out a user .",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "logging out a user ": {
+                    "value": {
+                      "message": "Logged out successfully"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Default error sample response"
+          }
+        }
+      }
+    },
+    "/users/{id}/role": {
+      "summary": "to cahnge the role of speceific user ",
+      "patch": {
+        "summary": "to cahnge the role of speceofoc user ",
+        "description": "",
+        "operationId": "role_change",
+        "requestBody": {
+          "description": "change role of specific user",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/change-role"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "Default error sample response",
+            "patch response": {
+              "content": {
+                "application/json": {
+                  "examples": {
+                    "changing role of user ": {
+                      "value": {
+                        "message": "Role has been updated successfully",
+                        "userId": 41,
+                        "oldRole": "user",
+                        "newRole": "admin"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id of the user to be changing the role for him.",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ]
+      }
+    },
+    "/api/delete-caption/{id}": {
+      "summary": "to delete c aption specified by id ",
+      "delete": {
+        "summary": "to delete caption specified by id",
+        "description": "to delete caption specified by id",
+        "operationId": "delete_caption",
+        "responses": {
+          "default": {
+            "description": "Default error sample response",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "deleting caption ": {
+                    "value": "{\n    \"message\": \"caption deleted successfully\",\n    \"captionId\": 15\n}"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/add-image": {
+      "summary": "to add a new image to the DB ",
+      "description": "to add a new image to the DB ",
+      "post": {
+        "summary": "to add new image to0 the DB ",
+        "description": "to add new image to0 the DB ",
+        "operationId": "add_image",
+        "responses": {
+          "default": {
+            "description": "Default error sample response",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "adding-image to the DB": {
+                    "value": "{\n    \"message\": \"Image uploaded successfully\",\n    \"image\": {\n        \"id\": 70,\n        \"url\": \"/uploads/images/1768732400975-434931071.jpg\"\n    }\n}"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/add-vote/{captionId}": {
+      "summary": "to add new vote to specific caption ",
+      "description": "to add new vote to specific caption ",
+      "post": {
+        "summary": "to add new vote to specific caption ",
+        "description": "to add new vote to specific caption ",
+        "operationId": "add_vote",
+        "responses": {
+          "default": {
+            "description": "Default error sample response",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "adding_vote": {
+                    "value": "{\n    \"message\": \"تم التصويت بنجاح\",\n    \"captionId\": 17,\n    \"userId\": 42\n}"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id of the caption  to add vote to it .",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ]
+      }
+    },
+    "/api/delete-vote/{captionId}": {
+      "summary": "to delete from a caption ",
+      "description": "to delete from a caption ",
+      "delete": {
+        "summary": "to delete from a caption ",
+        "description": "to delete from a caption ",
+        "operationId": "delete_vote",
+        "responses": {
+          "default": {
+            "description": "Default error sample response",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "deleting_caption": {
+                    "value": "{\n    \"message\": \"vote has been deleted sucessfully\",\n    \"captionId\": \"17\"\n}"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id of the caption  delete .",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ]
+      }
+    },
+    "/api/captions/{captionId}": {
+      "summary": "to get stats of votes in certain caption ",
+      "description": "to get stats of votes in certain caption ",
+      "get": {
+        "summary": "to get stats of votes in certain caption ",
+        "description": "to get stats of votes in certain caption ",
+        "operationId": "get_stats",
+        "responses": {
+          "default": {
+            "description": "Default error sample response",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "getting stats": {
+                    "value": "{\n    \"captionId\": 18,\n    \"totalVotes\": 0,\n    \"hasVoted\": false\n}"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id of the caption  to get vote stats from .",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Images": {
+        "type": "object",
+        "properties": {
+          "caption": {
+            "type": "string"
+          }
+        }
+      },
+      "register": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "login": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "change-role": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

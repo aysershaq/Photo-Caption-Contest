@@ -1,0 +1,78 @@
+<!-- admin_dashboard.html -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>لوحة الإدارة - مسابقة تسمية الصور</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+// حماية صفحة photos.html مثلا:
+if (!localStorage.getItem('token')) {
+  // إذا لم يكن التوكن موجودًا، إعادة التوجيه إلى صفحة تسجيل الدخول
+  window.location.href = './login.html';
+}
+</script>
+
+</head>
+<body class="bg-gray-100">
+    <!-- إضافة صورة (للأدمن فقط) -->
+<section class="bg-white p-4 rounded shadow mb-6">
+  <h2 class="text-lg font-semibold mb-3"> Add New Photo </h2>
+
+  <form id="uploadForm" class="flex flex-col gap-3">
+    <input
+      type="file"
+      id="imageInput"
+      name="image"
+      accept="image/*"
+      required
+      class="border p-2"
+    />
+
+    <button
+      type="submit"
+      class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 w-fit"
+    >
+ Add Photo
+    </button>
+
+    <p id="uploadMsg" class="text-sm"></p>
+  </form>
+</section>
+
+    <!-- شريط التنقل العلوي -->
+    <nav class="bg-blue-800 text-white p-4 flex justify-between items-center">
+        <span class="font-semibold"> Dashboard</span>
+        <div>
+            <a href="photos.html" class="mr-4 hover:underline">View Photos </a>
+            <a href="add_caption.html" class="mr-4 hover:underline">Add New Caption</a>
+            <a href="#" id="logoutBtn" class="hover:underline">Signout</a>
+        </div>
+    </nav>
+
+    <!-- قسم إدارة المستخدمين -->
+    <div class="p-6">
+        <h2 class="text-xl font-bold mb-4"> Users Managment </h2>
+        <div id="adminError" class="text-red-500 mb-3 text-center"></div>
+        <div class="overflow-x-auto bg-white rounded shadow-md">
+            <table class="min-w-full text-right">
+                <thead class="bg-gray-200">
+                    <tr>
+                        <th class="py-2 px-4">User</th>
+                        <th class="py-2 px-4">Email</th>
+                        <th class="py-2 px-4">Role</th>
+                        <th class="py-2 px-4">Change Role</th>
+                    </tr>
+                </thead>
+                <tbody id="usersTableBody">
+                    <!-- سيتم تعبئة الصفوف بواسطة JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+<div id="adminPhotos"></div>
+    <!-- <script src="js/app.js"></script> -->
+    <script src="js/admin.js"></script>
+</body>
+</html>
