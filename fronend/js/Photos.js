@@ -1,5 +1,5 @@
 // js/photos.js
- const API_URL = "https://photo-caption-contest-pbuo.onrender.com/";
+ const API_URL = "https://photo-caption-contest-pbuo.onrender.com";
 console.log("photos.js loaded");
 let photosCache = [];
 

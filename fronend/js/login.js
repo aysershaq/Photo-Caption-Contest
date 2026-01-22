@@ -1,5 +1,5 @@
 // js/login.js
- const API_URL = "https://photo-caption-contest-pbuo.onrender.com/";
+ const API_URL = "https://photo-caption-contest-pbuo.onrender.com";
 const loginForm = document.getElementById('loginForm');
 const loginUserInput = document.getElementById('loginUser');
 const loginPassInput = document.getElementById('loginPassword');

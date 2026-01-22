@@ -1,7 +1,7 @@
 // js/admin.js
 
 
-const API_URL = "https://photo-caption-contest-pbuo.onrender.com/";
+const API_URL = "https://photo-caption-contest-pbuo.onrender.com";
 function setupUploadForm() {
   const form = document.getElementById("uploadForm");
   if (!form) return;
@@ -25,7 +25,7 @@ function setupUploadForm() {
     try {
       const token = localStorage.getItem("token");
 
-      const res = await fetch("http://localhost:3000/api/add-image", {
+      const res = await fetch(`${API_URL}/api/add-image`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`
