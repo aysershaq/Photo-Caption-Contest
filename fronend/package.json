@@ -6,7 +6,7 @@
     "dev": "cross-env NODE_ENV=development  nodemon --watch server.js  --watch routes/ --watch models/ --watch middlewares/ --watch imageCache.js --watch controllers/ --watch migrations/ ",
     "start": "cross-env NODE_ENV=production  node server.js",
     "migrate": "sequelize-cli db:migrate --env production",
-   "build:css": "node -e \"require('fs').mkdirSync('public',{recursive:true})\" && npx @tailwindcss/cli -i ./src/input.css -o ./public/output.css --minify",
+    "build:css": "node -e \"require('fs').mkdirSync('frontend/public',{recursive:true})\" && npx @tailwindcss/cli -i ./frontend/src/input.css -o ./frontend/public/output.css --minify",
     "dev:css": "npx @tailwindcss/cli -i ./src/input.css -o ./public/output.css --watch"
   },
   "author": "",
