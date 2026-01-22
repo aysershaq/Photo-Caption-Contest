@@ -20,35 +20,40 @@ if (user?.role === "admin") {
 async function checkLoggedIn() {
   const token = localStorage.getItem("token");
 
-  // لو لا يوجد توكن → رجوع لصفحة اللوجين
   if (!token) {
     window.location.href = "./login.html";
     return;
   }
 
   try {
-    // نضرب endpoint محمي فعلاً
     const res = await fetch(`${API_URL}/api/all-images`, {
       method: "GET",
-      credentials: "include",
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
+      headers: authHeaders(),
+      cache: "no-store",
+      // لا تحتاج credentials لأنك تستخدم Bearer token
     });
 
-    // لو التوكن غير صالح
-    if (res.status === 401) {
+    if (res.status === 401 || res.status === 403) {
       localStorage.removeItem("token");
+      localStorage.removeItem("user");
       window.location.href = "./login.html";
+      return;
     }
 
-    // لو 200 → كل شيء تمام، لا نفعل شيئًا
+    if (!res.ok) {
+      const msg = await res.text().catch(() => "");
+      console.error("Auth check failed:", res.status, msg);
+      // لا تعمل redirect هنا حتى نعرف المشكلة
+      return;
+    }
 
+    // OK
   } catch (err) {
-    // أي خطأ غير متوقع → نرجع للّوجين
-    window.location.href = "./login.html";
+    console.error("Auth check network error:", err);
+    // لا تعمل redirect مباشرة — لأن الخطأ قد يكون شبكة/SSL/CORS
   }
 }
+
 
 /**
  * Redirect to login page
@@ -60,7 +65,7 @@ async function getCaptionVoteStats(captionId) {
     
   const res = await fetch(`${API_URL}/api/captions/${captionId}`, {
     method: "GET",
-    credentials: "include",
+   
     headers: authHeaders(), // لازم فيها Authorization
     cache: "no-store",
   });
@@ -146,7 +151,7 @@ console.log("caption full:", caption);
     try {
       const res = await fetch(`${API_URL}/api/add-vote/${caption.id}`, {
         method: "POST",
-        credentials: "include",
+        
         headers: authHeaders(),
       });
 
@@ -188,7 +193,7 @@ console.log("caption full:", caption);
       // ✅ هذا هو المسار المقترح في الباك: delete-vote/:captionId
       const res = await fetch(`${API_URL}/api/delete-vote/${caption.id}`, {
         method: "DELETE",
-        credentials: "include",
+        
         headers: authHeaders(),
       });
 
@@ -262,7 +267,7 @@ if (canDelete) {
     try {
       const res = await fetch(`${API_URL}/api/delete-caption/${caption.id}`, {
         method: "DELETE",
-        credentials: "include",
+        
         headers: authHeaders(),
       });
 
@@ -354,7 +359,7 @@ async function loadPhotosAndCaptions() {
     photosContainer.innerHTML = "";
 
     const res = await fetch(`${API_URL}/api/all-images`, {
-      credentials: "include",
+    
       headers: authHeaders()
     });
 
@@ -367,7 +372,7 @@ async function loadPhotosAndCaptions() {
     for (const photo of photos) {
       const capRes = await fetch(`${API_URL}/api/image/${photo.id}/captions`, {
         headers: authHeaders(),
-        credentials: "include",
+       
         cache: "no-store",
       });
 
