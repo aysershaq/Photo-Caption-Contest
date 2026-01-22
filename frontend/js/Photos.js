@@ -30,6 +30,7 @@ async function checkLoggedIn() {
     // نضرب endpoint محمي فعلاً
     const res = await fetch("http://localhost:3000/api/all-images", {
       method: "GET",
+      credentials: "include",
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -59,6 +60,7 @@ async function getCaptionVoteStats(captionId) {
     
   const res = await fetch(`${API_URL}/api/captions/${captionId}`, {
     method: "GET",
+    credentials: "include",
     headers: authHeaders(), // لازم فيها Authorization
     cache: "no-store",
   });
@@ -144,6 +146,7 @@ console.log("caption full:", caption);
     try {
       const res = await fetch(`${API_URL}/api/add-vote/${caption.id}`, {
         method: "POST",
+        credentials: "include",
         headers: authHeaders(),
       });
 
@@ -185,6 +188,7 @@ console.log("caption full:", caption);
       // ✅ هذا هو المسار المقترح في الباك: delete-vote/:captionId
       const res = await fetch(`${API_URL}/api/delete-vote/${caption.id}`, {
         method: "DELETE",
+        credentials: "include",
         headers: authHeaders(),
       });
 
@@ -258,6 +262,7 @@ if (canDelete) {
     try {
       const res = await fetch(`${API_URL}/api/delete-caption/${caption.id}`, {
         method: "DELETE",
+        credentials: "include",
         headers: authHeaders(),
       });
 
@@ -349,6 +354,7 @@ async function loadPhotosAndCaptions() {
     photosContainer.innerHTML = "";
 
     const res = await fetch(`${API_URL}/api/all-images`, {
+      credentials: "include",
       headers: authHeaders()
     });
 
@@ -361,6 +367,7 @@ async function loadPhotosAndCaptions() {
     for (const photo of photos) {
       const capRes = await fetch(`${API_URL}/api/image/${photo.id}/captions`, {
         headers: authHeaders(),
+        credentials: "include",
         cache: "no-store",
       });
 
