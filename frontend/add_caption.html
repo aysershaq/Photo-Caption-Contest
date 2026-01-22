@@ -9,16 +9,15 @@
   <link rel="stylesheet" href="/output.css">
 
     <!-- CSP يسمح بالاتصال بالباك وإظهار الصور من localhost:3000 -->
-    <meta
-      http-equiv="Content-Security-Policy"
+ <meta http-equiv="Content-Security-Policy"
       content="
-      default-src 'self';
-      img-src 'self' data: http://localhost:3000;
-      connect-src 'self' http://localhost:3000;
-      script-src 'self' https://cdn.tailwindcss.com;
-      style-src 'self' 'unsafe-inline';
-    "
-    />
+        default-src 'self';
+        script-src 'self';
+        style-src 'self' 'unsafe-inline';
+        img-src 'self' data: https: blob:;
+        connect-src 'self' https://photo-caption-contest-pbuo.onrender.com;
+      ">
+
   </head>
 
   <body class="bg-gray-50 min-h-screen">

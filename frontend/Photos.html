@@ -10,13 +10,14 @@
 
   <!-- CSP مناسب لصور الباك -->
   <meta http-equiv="Content-Security-Policy"
-    content="
-      default-src 'self';
-      img-src 'self' data: http://localhost:3000;
-      connect-src 'self' http://localhost:3000;
-      script-src 'self' https://cdn.tailwindcss.com;
-      style-src 'self' 'unsafe-inline';
-    ">
+      content="
+        default-src 'self';
+        script-src 'self';
+        style-src 'self' 'unsafe-inline';
+        img-src 'self' data: https: blob:;
+        connect-src 'self' https://photo-caption-contest-pbuo.onrender.com;
+      ">
+
 </head>
 ش
 <body class="bg-gray-50 min-h-screen">
