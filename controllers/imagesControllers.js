@@ -165,7 +165,7 @@ if (existing) {
     }
   },
   deleteImage:async(req,res)=>{
-
+  try{
   const image =await db.Images.findOne({where:{
     id:req.params.id
   }})
@@ -194,9 +194,13 @@ if (existing) {
   })
    return res.json({status:"image deleted successfully",image:image})
 }
+   }catch(err){
+  res.status(500).json({err:err.message})
+}
+  }
 
  
-},
+
 deleteCaption:async (req, res, next) => {
   try {
     const captionId = Number(req.params.id);
