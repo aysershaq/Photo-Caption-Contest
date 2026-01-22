@@ -36,6 +36,7 @@ loginForm.addEventListener('submit', async (e) => {
         if (res.ok) {
             const data = await res.json();
             // خزّن معلومات المستخدم
+             localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify({
                    id: data.user.id,
                   role: data.user.role,
