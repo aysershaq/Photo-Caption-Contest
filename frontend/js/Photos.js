@@ -12,6 +12,10 @@ function authHeaders() {
   };
 }
 
+const user = JSON.parse(localStorage.getItem("user") || "null");
+if (user?.role === "admin") {
+  document.querySelector("#dashboardBtn")?.classList.remove("hidden");
+}
 
 async function checkLoggedIn() {
   const token = localStorage.getItem("token");
