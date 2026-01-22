@@ -5,7 +5,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; connect-src 'self' https://photo-caption-contest-pbuo.onrender.com; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self';"
+          "value": "default-src 'self'; connect-src 'self' https://photo-caption-contest-pbuo.onrender.com; https://cdn.tailwindcss.com; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; script-src 'self';"
         }
       ]
     }
