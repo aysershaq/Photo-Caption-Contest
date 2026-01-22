@@ -45,7 +45,7 @@ registerForm.addEventListener('submit', async (e) => {
         });
         if (res.ok) {
             // في حال النجاح، الانتقال إلى صفحة تسجيل الدخول مع إشارة النجاح
-            window.location.href = './login.html?register=success';
+            window.location.href = 'login.html?register=success';
         } else {
             // حدث خطأ في إنشاء الحساب
             if (res.status === 409) {
