@@ -10,7 +10,7 @@ exports.createVote = async (req, res, next) => {
     }
 
     // تأكد أن الـcaption موجود
-    const caption = await db.Captions.findOne({where:{id:captionId}});
+    const caption = await db.Captions.findByPk(captionId);
     if (!caption) {
       return res.status(404).json({ error: 'Caption not found' });
     }
@@ -25,7 +25,7 @@ exports.createVote = async (req, res, next) => {
 
     return res.status(201).json({
       message: 'تم التصويت بنجاح',
-      voteId: vote.id,
+      voteId: vote.vote_id,
       captionId,
       userId
     });
