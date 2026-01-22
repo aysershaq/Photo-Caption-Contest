@@ -28,7 +28,7 @@ async function checkLoggedIn() {
 
   try {
     // نضرب endpoint محمي فعلاً
-    const res = await fetch("http://localhost:3000/api/all-images", {
+    const res = await fetch(`${API_URL}/api/all-images`, {
       method: "GET",
       credentials: "include",
       headers: {
