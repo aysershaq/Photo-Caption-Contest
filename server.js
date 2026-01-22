@@ -80,7 +80,7 @@ app.use("/api",userRouter)
 app.use("/api",votesRouter)
 
 app.get("/api", (req, res) => {
-  res.send("hello world Welcome to Photo Caption Contest");
+  res.send("hello  Welcome to Photo Caption Contest");
 });
 
 (async () => {
