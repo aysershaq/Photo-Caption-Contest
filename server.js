@@ -48,7 +48,7 @@ app.use(
   })
 );
 app.use(cors({
-  origin: ["https://photo-caption-contest-2026.onrender.com", "https://photo-caption-contest-95.onrender.com"], // السماح لهذا النطاق فقط
+  origin: ["https://photo-caption-contest-2026.onrender.com", "https://photo-caption-contest-1995.onrender.com"], // السماح لهذا النطاق فقط
   methods: ['GET','POST','PUT','DELETE','PATCH',"OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: false // السماح بإرسال الكوكي/التوكن عبر الطلبات (إن لزم)
