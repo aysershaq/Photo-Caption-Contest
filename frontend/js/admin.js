@@ -1,7 +1,7 @@
 // js/admin.js
 
 
-const API_URL = "https://photo-caption-contest-pbuo.onrender.com";
+const API_URL = "https://photo-caption-contest-2026.onrender.com";
 function setupUploadForm() {
   const form = document.getElementById("uploadForm");
   if (!form) return;
