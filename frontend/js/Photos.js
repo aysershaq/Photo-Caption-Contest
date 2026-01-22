@@ -400,16 +400,20 @@ async function loadPhotosAndCaptions() {
 }
 
 function showAdminLinkIfAdmin() {
-  const adminLink = document.getElementById("adminLink");
-  if (!adminLink) return;
+ const btn = document.getElementById("dashboardBtn");
+  if (!btn) return;
 
   const token = localStorage.getItem("token");
-  const payload = token ? parseJwtPayload(token) : null;
+  if (!token) return;
 
-  // غيّر "admin" حسب ما تستخدمه في التوكن
-  const isAdmin = payload?.role === "admin";
-
-  adminLink.classList.toggle("hidden", !isAdmin);
+  try {
+    const payload = JSON.parse(atob(token.split(".")[1]));
+    if (payload.role === "admin") {
+      btn.classList.remove("hidden");
+    }
+  } catch (e) {
+    console.error("Invalid token");
+  }
 }
 function setupLogout() {
   const btn = document.getElementById("logoutBtn");
