@@ -42,7 +42,7 @@ loginForm.addEventListener('submit', async (e) => {
             localStorage.setItem('token', token);
             localStorage.setItem('user', JSON.stringify(user));
             // الانتقال إلى صفحة عرض الصور
-            window.location.href = 'photos.html';
+            window.location.href = 'Photos.html';
         } else {
             if (res.status === 401) {
                 messageDiv.textContent = "بيانات تسجيل الدخول غير صحيحة.";
