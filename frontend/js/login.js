@@ -35,12 +35,19 @@ loginForm.addEventListener('submit', async (e) => {
         });
         if (res.ok) {
             const data = await res.json();
+            // خزّن معلومات المستخدم
+      localStorage.setItem("user", JSON.stringify({
+                   id: data.user.id,
+                  role: data.user.role,
+                   username: data.user.username,
+                     }));
+
             // نتوقع أن يعود الخادم برمز JWT ومعلومات المستخدم
-            const token = data.token;
-            const user = data.user;
+           
             // تخزين الرمز ومعلومات المستخدم في التخزين المحلي
-            localStorage.setItem('token', token);
-            localStorage.setItem('user', JSON.stringify(user));
+                         if (data.user.role === "admin") {
+                         document.querySelector("#dashboardBtn")?.classList.remove("hidden");
+}
             // الانتقال إلى صفحة عرض الصور
             window.location.href = 'Photos.html';
         } else {
