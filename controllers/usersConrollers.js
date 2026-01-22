@@ -43,46 +43,45 @@ module.exports={
   
   
   },
-  addNewUser:async(req, res) => {
-    const { username,email, password } = req.body;
-  
-  let user = await db.Users.findAll({where:{ email: email }});
-    console.log(user)
-  if(user.length!==0){
-    res.status(500).send("User already exists")
-   
-  }else{
-  
-  try{
-  
-    
-   const salt = await bcrypt.genSalt(10);
-      console.log(salt)
-   
-  const hash = await bcrypt.hash(password, salt);
-  
-  const  newUser = await db.Users.create({
+ addNewUser: async (req, res) => {
+  try {
+    const { username, email, password } = req.body || {};
+      passwordStr = String(password)
+    if (!username || !email || !password) {
+      return res.status(400).json({
+        error: "username, email and password are required"
+      });
+    }
+
+    const existingUser = await db.Users.findOne({ where: { email } });
+    if (existingUser) {
+      return res.status(409).json({ error: "User already exists" });
+    }
+
+    const passwordHash = await bcrypt.hash(passwordStr, 10);
+
+    const newUser = await db.Users.create({
       username,
       email,
-      passwordHash:hash
+      passwordHash,
+      role: "user"
     });
-   
-  
-    res.status(201).json({status:"User registered successfully",user:newUser})
-    
-  }catch(err){
-     console.log("name:", err.name);
-    console.log("message:", err.message);
-    console.log("pg:", err.parent?.message);
-    console.log("detail:", err.parent?.detail);
-    console.log("errors:", err.errors);
-    return res.status(500).json({ error: err.message, detail: err.parent?.detail });
-  
-    console.log(err.message)
-    res.status(500).json({status:"failed registering",error:err.message})
+
+    return res.status(201).json({
+      status: "User registered successfully",
+      user: newUser
+    });
+
+  } catch (err) {
+    return res.status(500).json({
+      name: err.name,
+      message: err.message,
+      pg: err.parent,
+    });
   }
-  }
-  },
+},
+
+ 
   logInUser:async(req,res)=>{
 
   const {email,password} = req.body;

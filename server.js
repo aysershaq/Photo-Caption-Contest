@@ -48,7 +48,7 @@ app.use(
   })
 );
 app.use(cors({
-  origin: ["https://photo-caption-contest-pbuo.onrender.com", "https://photo-caption-contest.vercel.app"], // السماح لهذا النطاق فقط
+  origin: ["http://localhost:3000" ,"https://photo-caption-contest.vercel.app"], // السماح لهذا النطاق فقط
   methods: ['GET','POST','PUT','DELETE','PATCH',"OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: false // السماح بإرسال الكوكي/التوكن عبر الطلبات (إن لزم)
